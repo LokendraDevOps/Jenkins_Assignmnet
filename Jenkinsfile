@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Copy to Test Node') {
             steps {
-                sh 'git checkout . && git pull' (branches: [[name: '*/devlop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']])
+                sh 'git checkout . && git pull' (branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']])
                 script {
                     // Use appropriate tools (e.g., rsync, SCP) to copy files to the test node
                     // Replace 'test_node_ip' and '/path/to/test/directory' with your actual values
