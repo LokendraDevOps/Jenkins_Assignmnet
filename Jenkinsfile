@@ -1,11 +1,13 @@
 pipeline {
     agent any
-
-    scm {
-        git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
-        branch 'develop'
+    stages {
+        stage {
+            scm{
+               git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
+               branch 'develop' 
+            }
+        }
     }
-
     triggers {
         scm {
             branches { "develop" }
