@@ -3,7 +3,7 @@ pipeline {
 
     scm {
         git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git' // Corrected URL (assuming HTTPS)
-        branch 'develop'
+        branches 'develop'
     }
 
     triggers {
