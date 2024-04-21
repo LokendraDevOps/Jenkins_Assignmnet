@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage {
-            scm{
+            scm {
                git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
                branch 'develop' 
             }
