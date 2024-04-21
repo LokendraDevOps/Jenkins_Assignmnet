@@ -1,19 +1,17 @@
 pipeline {
     agent any
-    stages {
-        stage {
-            scm {
-                git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
-                branches 'develop'
-            }
-        }
+
+    scm {
+        git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
+        branch 'develop'
     }
+
     triggers {
         scm {
-        git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'    
-        branches { "develop" }
+            branches { "develop" }
         }
     }
+
     stages {
         stage('Copy to Test Node (if successful)') {
             when {
@@ -25,6 +23,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy to Prod (if successful)') {
             when {
                 expression { return $currentBuild.result == 'SUCCESS' }
@@ -37,3 +36,4 @@ pipeline {
         }
     }
 }
+
