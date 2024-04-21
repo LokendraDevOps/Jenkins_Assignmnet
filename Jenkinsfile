@@ -1,18 +1,19 @@
 pipeline {
     agent any
-
-    scm {
-        git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
-        branches 'develop'
+    stages {
+        stage {
+            scm {
+                git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
+                branches 'develop'
+            }
+        }
     }
-
     triggers {
         scm {
         git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'    
         branches { "develop" }
         }
     }
-
     stages {
         stage('Copy to Test Node (if successful)') {
             when {
