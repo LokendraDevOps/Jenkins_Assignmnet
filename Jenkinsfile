@@ -1,10 +1,10 @@
 pipeline {
     agent any
+
     stages {
-        stage {
-            scm {
-               git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
-               branch 'develop' 
+        stage('Checkout Code') {
+            steps {
+                git branch: 'develop', credentialsId: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git' 
             }
         }
     }
