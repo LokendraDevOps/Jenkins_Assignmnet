@@ -8,7 +8,8 @@ pipeline {
 
     triggers {
         scm {
-            branches { "develop" }
+        git 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'    
+        branches { "develop" }
         }
     }
 
@@ -23,7 +24,6 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy to Prod (if successful)') {
             when {
                 expression { return $currentBuild.result == 'SUCCESS' }
