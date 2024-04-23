@@ -13,9 +13,6 @@ pipeline {
                     branches: [[name: 'develop']],
                     userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']]
                 ])
-                } catch (err) {
-                    echo "Error during checkout: ${err.message}"
-                    currentBuild.result = 'FAILURE'
                 }
             }      
         stage('Copy to Test Node (if successful)') {
