@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    triggers {
-        pollSCM 'develop'
-    }
     stages {
         stage('Clone repository') {
             steps {
