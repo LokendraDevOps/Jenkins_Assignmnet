@@ -1,12 +1,15 @@
 pipeline {
     agent any
+       triggers {
+        scm([$class: 'GitSCM', branches: [[name: 'develop']], doNotTriggerIfPolled: false])
+    }
     stages {
         stage('Clone repository') {
             steps {
                 script {
                     git branch: 'develop', url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
                 }
-            }
+            }      
         }
         stage('Copy to Test Node (if successful)') {
             when {
