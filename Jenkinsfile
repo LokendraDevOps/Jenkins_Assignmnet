@@ -1,18 +1,19 @@
 pipeline {
     agent any
-       triggers {
-        pollSCM {
-            branches 'develop'
-        }
-       }    
+    triggers {
+        pollSCM 'H/0 * * * *'
+    }
     stages {
-        stage('Clone repository') {
+        stage('Checkout') {
             steps {
-                script {
-                    git branch: 'develop', url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: 'develop']],
+                    userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']]
+                    ])
                 }
-            }      
-        }
+            }         
+        
         stage('Copy to Test Node (if successful)') {
             when {
                 expression { currentBuild.result == 'SUCCESS' }
