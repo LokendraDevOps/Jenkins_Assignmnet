@@ -1,7 +1,8 @@
 pipeline {
     agent any
        triggers {
-        pollSCM {([$class: 'GitSCM', branches: [[name: 'develop']], doNotTriggerIfPolled: false])
+        pollSCM {
+            branches 'develop'
         }
        }    
     stages {
