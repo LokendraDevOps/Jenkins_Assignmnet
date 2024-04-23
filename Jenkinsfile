@@ -1,31 +1,33 @@
 pipeline {
     agent any
+
     triggers {
-        pollSCM 'H/02 * * * *'
+        pollSCM '*/02 * * * *' 
     }
+
     stages {
         stage('Checkout') {
             steps {
                 try {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: 'develop']],
-                    userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']]
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: 'develop']],
+                        userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']]
                     ])
-                    catch (e) {
-                    echo "Success during checkout: ${e.message}"
-                    currentBuild.result = 'SUCCESS'
-                    }
+                } catch (err) {
+                    echo "Error during checkout: ${err.message}"
+                    currentBuild.result = 'FAILURE'
                 }
-            }         
+            }
         }
+
         stage('Copy to Test Node (if successful)') {
             when {
                 expression { currentBuild.result == 'SUCCESS' }
             }
             steps {
                 script {
-                    sh 'rsync -avz -e ssh . 172.31.21.36:/home/ubuntu/Job-3'
+                    sh 'rsync -avz -e ssh .  it@192.168.1.207:/home/it/Pictures'
                 }
             }
         }
@@ -36,7 +38,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'rsync -avz -e ssh . 172.31.19.138:/home/ubuntu/Job-3'
+                    sh 'rsync -avz -e ssh .  it@192.168.1.207:/home/it/Pictures' 
                 }
             }
         }
