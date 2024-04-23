@@ -8,7 +8,6 @@ pipeline {
                 }
             }
         }
-
         stage('Copy to Test Node (if successful)') {
             when {
                 expression { currentBuild.result == 'SUCCESS' }
