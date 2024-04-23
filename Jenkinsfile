@@ -1,8 +1,9 @@
 pipeline {
     agent any
        triggers {
-        pollSCM([$class: 'GitSCM', branches: [[name: 'develop']], doNotTriggerIfPolled: false])
-    }
+        pollSCM {([$class: 'GitSCM', branches: [[name: 'develop']], doNotTriggerIfPolled: false])
+        }
+       }    
     stages {
         stage('Clone repository') {
             steps {
