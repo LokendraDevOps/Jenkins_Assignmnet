@@ -8,19 +8,16 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                try {
-                    checkout([
-                        $class: 'GitSCM',
-                        branches: [[name: 'develop']],
-                        userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']]
-                    ])
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: 'develop']],
+                    userRemoteConfigs: [[url: 'https://github.com/LokendraDevOps/Jenkins_Assignmnet.git']]
+                ])
                 } catch (err) {
                     echo "Error during checkout: ${err.message}"
                     currentBuild.result = 'FAILURE'
                 }
-            }
-        }
-
+            }      
         stage('Copy to Test Node (if successful)') {
             when {
                 expression { currentBuild.result == 'SUCCESS' }
